@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://bgqgliq5mxrc2"]
+
+[ext_resource type="Texture2D" uid="uid://cu76ergblld4q" path="res://sprites/enemies/eye.png" id="1_5t5md"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qmv4"]
+atlas = ExtResource("1_5t5md")
+region = Rect2(0, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fw3rc"]
+atlas = ExtResource("1_5t5md")
+region = Rect2(320, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnv5k"]
+atlas = ExtResource("1_5t5md")
+region = Rect2(640, 0, 320, 320)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p15cs"]
+atlas = ExtResource("1_5t5md")
+region = Rect2(960, 0, 320, 320)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yhhk7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qmv4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fw3rc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnv5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p15cs")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fe8ai"]
+radius = 26.0192
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0vja"]
+size = Vector2(48, 55)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80pqo"]
+size = Vector2(51, 52)
+
+[node name="eye" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_yhhk7")
+animation = &"idle"
+frame = 1
+frame_progress = 0.120414
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fe8ai")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-41, -0.5)
+shape = SubResource("RectangleShape2D_a0vja")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(43.5, -1)
+shape = SubResource("RectangleShape2D_80pqo")

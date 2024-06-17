@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://dxcb6rxby87qg"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_vri5b"]
+[ext_resource type="PackedScene" uid="uid://5duuo2ylb85h" path="res://scenes/background.tscn" id="1_xx68b"]
+[ext_resource type="PackedScene" uid="uid://ywvuemwdmo5t" path="res://scenes/ground.tscn" id="2_luy37"]
+[ext_resource type="PackedScene" uid="uid://bqbbtxfk8d8sf" path="res://scenes/ninja.tscn" id="3_ptvrw"]
+[ext_resource type="PackedScene" uid="uid://ojkeyuuhsi4u" path="res://scenes/hud.tscn" id="5_mxmxb"]
+
+[node name="main" type="Node"]
+script = ExtResource("1_vri5b")
+
+[node name="bg" parent="." instance=ExtResource("1_xx68b")]
+
+[node name="ground" parent="." instance=ExtResource("2_luy37")]
+
+[node name="ninja" parent="." instance=ExtResource("3_ptvrw")]
+position = Vector2(93, 495)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(2, 2)
+
+[node name="hud" parent="." instance=ExtResource("5_mxmxb")]
