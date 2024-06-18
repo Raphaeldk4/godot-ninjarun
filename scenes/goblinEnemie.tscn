@@ -1,21 +1,75 @@
-[gd_scene load_steps=7 format=3 uid="uid://bes4b37au02vw"]
+[gd_scene load_steps=14 format=3 uid="uid://bes4b37au02vw"]
 
-[ext_resource type="Texture2D" uid="uid://coqu0ms3tve5s" path="res://sprites/enemies/goblin.png" id="1_kvbmg"]
+[ext_resource type="Texture2D" uid="uid://bo6plwgns5v2o" path="res://sprites/enemies/goblin/death.png" id="1_0jqdv"]
+[ext_resource type="Texture2D" uid="uid://coqu0ms3tve5s" path="res://sprites/enemies/goblin/idle.png" id="2_pnu3m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6hyb"]
+atlas = ExtResource("1_0jqdv")
+region = Rect2(2016, 0, 672, 672)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghu1p"]
+atlas = ExtResource("1_0jqdv")
+region = Rect2(672, 0, 672, 672)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xprr"]
+atlas = ExtResource("1_0jqdv")
+region = Rect2(2688, 0, 672, 672)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1o0w"]
+atlas = ExtResource("1_0jqdv")
+region = Rect2(3360, 0, 672, 672)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omcha"]
+atlas = ExtResource("1_0jqdv")
+region = Rect2(4032, 0, 672, 672)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_th2wb"]
+atlas = ExtResource("1_0jqdv")
+region = Rect2(4704, 0, 672, 672)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_clbvu"]
-atlas = ExtResource("1_kvbmg")
+atlas = ExtResource("2_pnu3m")
 region = Rect2(0, 0, 672, 672)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_obeuq"]
-atlas = ExtResource("1_kvbmg")
+atlas = ExtResource("2_pnu3m")
 region = Rect2(672, 0, 672, 672)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0mpvs"]
-atlas = ExtResource("1_kvbmg")
+atlas = ExtResource("2_pnu3m")
 region = Rect2(1344, 0, 672, 672)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rre5t"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6hyb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghu1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xprr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1o0w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omcha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_th2wb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_th2wb")
+}, {
+"duration": 6.0,
+"texture": SubResource("AtlasTexture_th2wb")
+}],
+"loop": true,
+"name": &"death",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_clbvu")
@@ -40,9 +94,9 @@ scale = Vector2(0.295, 0.295)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(98.7118, -219.932)
 sprite_frames = SubResource("SpriteFrames_rre5t")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
-frame_progress = 0.492162
+frame_progress = 0.867706
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

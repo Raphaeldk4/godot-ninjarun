@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coqu0ms3tve5s"
-path="res://.godot/imported/goblin.png-0198c0292507581adadad53fbfeaf6af.ctex"
+uid="uid://3b6ug55xqrkq"
+path="res://.godot/imported/IMG_4009.PNG-487bca4b35f6d0568ab0ddad2ff1a98d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/enemies/goblin.png"
-dest_files=["res://.godot/imported/goblin.png-0198c0292507581adadad53fbfeaf6af.ctex"]
+source_file="res://sprites/enemies/IMG_4009.PNG"
+dest_files=["res://.godot/imported/IMG_4009.PNG-487bca4b35f6d0568ab0ddad2ff1a98d.ctex"]
 
 [params]
 

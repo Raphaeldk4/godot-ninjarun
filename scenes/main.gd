@@ -27,7 +27,7 @@ var highScore: int
 #speed
 var speed: float 
 const startSpeed: float = 2
-const maxSpeed: int = 10
+const maxSpeed: int = 8
 const speedInrease: int = (5000)
 var screenSize: Vector2i
 
@@ -191,6 +191,4 @@ func gameOver():
 	
 
 
-func _on_timer_timeout():
-	dyingObstacle.visible = false
-	obstacles.erase(dyingObstacle)
+
