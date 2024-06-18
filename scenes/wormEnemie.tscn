@@ -1,6 +1,39 @@
-[gd_scene load_steps=14 format=3 uid="uid://bxihxd86dbmtj"]
+[gd_scene load_steps=23 format=3 uid="uid://bxihxd86dbmtj"]
 
+[ext_resource type="Texture2D" uid="uid://1h4ikx8ssq3x" path="res://sprites/enemies/Death.png" id="1_cd0y4"]
 [ext_resource type="Texture2D" uid="uid://pbnjtcuhgnk3" path="res://sprites/enemies/Idle.png" id="1_v3kih"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tadf4"]
+atlas = ExtResource("1_cd0y4")
+region = Rect2(0, 0, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmhjv"]
+atlas = ExtResource("1_cd0y4")
+region = Rect2(90, 0, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_may6f"]
+atlas = ExtResource("1_cd0y4")
+region = Rect2(180, 0, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7wx8"]
+atlas = ExtResource("1_cd0y4")
+region = Rect2(270, 0, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eo7fs"]
+atlas = ExtResource("1_cd0y4")
+region = Rect2(360, 0, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkxvi"]
+atlas = ExtResource("1_cd0y4")
+region = Rect2(450, 0, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ob5m"]
+atlas = ExtResource("1_cd0y4")
+region = Rect2(540, 0, 90, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1b0pa"]
+atlas = ExtResource("1_cd0y4")
+region = Rect2(630, 0, 90, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nahan"]
 atlas = ExtResource("1_v3kih")
@@ -42,6 +75,35 @@ region = Rect2(720, 0, 90, 90)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_tadf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmhjv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_may6f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7wx8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eo7fs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkxvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ob5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1b0pa")
+}],
+"loop": true,
+"name": &"death",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_nahan")
 }, {
 "duration": 1.0,
@@ -77,7 +139,7 @@ animations = [{
 radius = 12.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fpqgg"]
-size = Vector2(41.9526, 11)
+size = Vector2(30.9825, 11)
 
 [node name="worm" type="Area2D"]
 scale = Vector2(3.74, 3.74)
@@ -86,10 +148,9 @@ scale = Vector2(3.74, 3.74)
 texture_filter = 1
 position = Vector2(23.6096, -13.0214)
 sprite_frames = SubResource("SpriteFrames_j4bmf")
-animation = &"idle"
+animation = &"death"
 autoplay = "idle"
-frame = 6
-frame_progress = 0.83704
+frame_progress = 0.334819
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -97,5 +158,5 @@ position = Vector2(16.6271, -15.0164)
 shape = SubResource("CircleShape2D_kwn07")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(29.566, -5.54009)
+position = Vector2(24.0809, -5.54009)
 shape = SubResource("RectangleShape2D_fpqgg")

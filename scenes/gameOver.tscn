@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cb8p6han6avpk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2yucr"]
+bg_color = Color(0, 0, 0, 0.188235)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6tm0u"]
+bg_color = Color(0, 0, 0, 0.427451)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eka0y"]
+bg_color = Color(0, 0, 0, 0.705882)
+
+[node name="gameOver" type="CanvasLayer"]
+process_mode = 2
+
+[node name="RESTART" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.5
+offset_top = -36.0
+offset_right = 99.5
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 46
+theme_override_styles/normal = SubResource("StyleBoxFlat_2yucr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6tm0u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_eka0y")
+text = "RESTART"

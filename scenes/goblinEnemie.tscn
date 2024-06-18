@@ -42,7 +42,7 @@ position = Vector2(98.7118, -219.932)
 sprite_frames = SubResource("SpriteFrames_rre5t")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.98931
+frame_progress = 0.492162
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

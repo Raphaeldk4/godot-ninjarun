@@ -2,6 +2,9 @@ extends CharacterBody2D
 
 const gravity: int  = 4200
 const jump_speed: int  = -1800
+var isAttacking: bool 
+var attackCoolDown: bool 
+var godMode: bool
 
 func _physics_process(delta):
 	velocity.y += gravity * delta
@@ -13,14 +16,41 @@ func _physics_process(delta):
 			$duckCollision.disabled = true
 			if Input.is_action_pressed("ui_accept"):
 				velocity.y = jump_speed
-				#$jumpSound.play()
-			elif Input.is_action_pressed("ui_down"):
-				$AnimatedSprite2D.play("duck")
-				$runCollision.disabled = true
-				$duckCollision.disabled = false
+				$jumpSound.play()
+			elif Input.is_action_pressed("attack"):
+				attack()
 			else:
-				$AnimatedSprite2D.play("run")
+				if isAttacking == false:
+					$AnimatedSprite2D.play("run")
 	else:
-		$AnimatedSprite2D.play("jump")
-	move_and_slide()
+		if isAttacking == false:
+			$AnimatedSprite2D.play("jump")
+		if Input.is_action_pressed("attack"):
+					attack()
 		
+	move_and_slide()
+
+func _on_is_attacking_timeout():
+	isAttacking = false
+	$attackCollision.disabled = true
+	
+func _on_attack_cooldown_timeout():
+	attackCoolDown = false
+
+func attack():
+	if attackCoolDown == false: 
+					attackCoolDown = true
+					isAttacking = true
+					godMode = true
+					$Node/attackCooldown.start()
+					$Node/isAttacking.start()
+					$AnimatedSprite2D.play("attack")
+					$runCollision.disabled = true
+					$duckCollision.disabled = false
+					$attackCollision.disabled = false
+					$swordSlash.play()
+					$Node/godMode.start()
+
+
+func _on_god_mode_timeout():
+	godMode = false
