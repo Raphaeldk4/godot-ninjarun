@@ -65,6 +65,9 @@ animations = [{
 }, {
 "duration": 6.0,
 "texture": SubResource("AtlasTexture_th2wb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_th2wb")
 }],
 "loop": true,
 "name": &"death",
@@ -96,7 +99,7 @@ position = Vector2(98.7118, -219.932)
 sprite_frames = SubResource("SpriteFrames_rre5t")
 animation = &"death"
 autoplay = "idle"
-frame_progress = 0.867706
+frame_progress = 0.302584
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

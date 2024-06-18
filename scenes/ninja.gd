@@ -5,6 +5,7 @@ const jump_speed: int  = -1800
 var isAttacking: bool 
 var attackCoolDown: bool 
 var godMode: bool
+var walkTime: bool = true
 
 func _physics_process(delta):
 	velocity.y += gravity * delta
@@ -22,6 +23,7 @@ func _physics_process(delta):
 			else:
 				if isAttacking == false:
 					$AnimatedSprite2D.play("run")
+					PlayWalkAudio()
 	else:
 		if isAttacking == false:
 			$AnimatedSprite2D.play("jump")
@@ -49,8 +51,20 @@ func attack():
 					$duckCollision.disabled = false
 					$attackCollision.disabled = false
 					$swordSlash.play()
+					$swordSlash/AudioStreamPlayer2D.play()
 					$Node/godMode.start()
 
 
 func _on_god_mode_timeout():
 	godMode = false
+	
+func PlayWalkAudio():
+	if walkTime:
+		walkTime = false
+		$walkSound.pitch_scale = randi_range(0.5,1.5) 
+		$Node/walkAudio.start()
+		$walkSound.play()
+
+
+func _on_walk_audio_timeout():
+	walkTime = true

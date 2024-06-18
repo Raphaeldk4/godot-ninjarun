@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bqbbtxfk8d8sf"]
+[gd_scene load_steps=31 format=3 uid="uid://bqbbtxfk8d8sf"]
 
 [ext_resource type="Texture2D" uid="uid://436d3m7adsvh" path="res://sprites/ninja/Attack2.png" id="1_7d8qg"]
 [ext_resource type="Script" path="res://scenes/ninja.gd" id="1_q4dok"]
@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://dekqj3sd27mbn" path="res://sprites/ninja/Jump.png" id="3_b1yu8"]
 [ext_resource type="Texture2D" uid="uid://lptbj1uce4ai" path="res://sprites/ninja/Run.png" id="4_dcgqm"]
 [ext_resource type="AudioStream" uid="uid://njpkcgx6t1hn" path="res://sound/jump.wav" id="6_05ey1"]
+[ext_resource type="AudioStream" uid="uid://d25f6ev78ftq4" path="res://sound/walk.wav" id="6_s4pv6"]
 [ext_resource type="AudioStream" uid="uid://ck1rccwmqyydl" path="res://sound/slash.wav" id="7_766dn"]
+[ext_resource type="AudioStream" uid="uid://cld4e7oixnxdr" path="res://sound/slash2.wav" id="7_ddy01"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e7eb8"]
 atlas = ExtResource("1_7d8qg")
@@ -97,7 +99,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"attack",
-"speed": 13.0
+"speed": 14.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -165,7 +167,7 @@ size = Vector2(39, 36.625)
 
 [node name="ninja" type="CharacterBody2D"]
 z_index = 1
-scale = Vector2(2, 2)
+scale = Vector2(2.605, 2.605)
 script = ExtResource("1_q4dok")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -189,13 +191,22 @@ position = Vector2(-0.5, 1.5)
 polygon = PackedVector2Array(22.5, 13, 70, 21.5, 84, -1.5, 25.5, -0.5)
 disabled = true
 
+[node name="walkSound" type="AudioStreamPlayer2D" parent="."]
+scale = Vector2(1, 1)
+stream = ExtResource("6_s4pv6")
+volume_db = -12.556
+
 [node name="jumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_05ey1")
 volume_db = -12.556
 
 [node name="swordSlash" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-0.5, 1.5)
+stream = ExtResource("7_ddy01")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="swordSlash"]
 stream = ExtResource("7_766dn")
+pitch_scale = 0.78
 
 [node name="Node" type="Node" parent="."]
 
@@ -206,7 +217,12 @@ wait_time = 0.22
 wait_time = 3.0
 
 [node name="godMode" type="Timer" parent="Node"]
+wait_time = 0.7
+
+[node name="walkAudio" type="Timer" parent="Node"]
+wait_time = 0.34
 
 [connection signal="timeout" from="Node/isAttacking" to="." method="_on_is_attacking_timeout"]
 [connection signal="timeout" from="Node/attackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="Node/godMode" to="." method="_on_god_mode_timeout"]
+[connection signal="timeout" from="Node/walkAudio" to="." method="_on_walk_audio_timeout"]

@@ -55,10 +55,14 @@ func new_game():
 	get_tree().paused = false
 	difficulty = 0
 	
-	#delete all obsticles
+	#delete all obsticles and flying enemies
 	for obs in obstacles:
 		obs.queue_free()
 	obstacles.clear()
+	
+	for enemies in airEnemie:
+		enemies.queue_free()
+	airEnemie.clear()
 	
 	#starting positions and state when game starts
 	$ninja.position = ninjaStartPos
