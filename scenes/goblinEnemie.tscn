@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://bes4b37au02vw"]
+[gd_scene load_steps=15 format=3 uid="uid://bes4b37au02vw"]
 
 [ext_resource type="Texture2D" uid="uid://bo6plwgns5v2o" path="res://sprites/enemies/goblin/death.png" id="1_0jqdv"]
 [ext_resource type="Texture2D" uid="uid://coqu0ms3tve5s" path="res://sprites/enemies/goblin/idle.png" id="2_pnu3m"]
+[ext_resource type="AudioStream" uid="uid://doaw0oldfapl2" path="res://sound/goblinDeath.mp3" id="3_ecd4j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d6hyb"]
 atlas = ExtResource("1_0jqdv")
@@ -91,17 +92,20 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8cemn"]
 size = Vector2(196, 280)
 
-[node name="Area2D" type="Area2D"]
+[node name="area2D" type="Area2D"]
 scale = Vector2(0.295, 0.295)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(98.7118, -219.932)
 sprite_frames = SubResource("SpriteFrames_rre5t")
-animation = &"death"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.302584
+frame_progress = 0.994521
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(100.338, -143.509)
 shape = SubResource("RectangleShape2D_8cemn")
+
+[node name="deathAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ecd4j")

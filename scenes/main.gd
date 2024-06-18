@@ -8,7 +8,7 @@ var obstacleType := [goblinEnemie, wormEnemie]
 var obstacles: Array
 var airEnemie: Array
 var eyeHeight := [200, 390]
-var dyingObstacle
+
 
 #variables
 #start pos
@@ -156,14 +156,16 @@ func removeEnemie(enemie):
 	airEnemie.erase(enemie)
 	
 func hitObsticle(body):
-	if body.name == "ninja" && $ninja.godMode == false:
+	if body.name == "ninja" && $ninja.isAttacking == false:
 		setHighScore()
 		gameOver()
 	if $ninja.isAttacking == true:
 		var obs = obstacles[0]
-		dyingObstacle = obs
+		obs.set_collision_layer_value ( 1, 0 )
+		obs.set_collision_mask_value( 1, 0 )
 		obs.get_node("AnimatedSprite2D").play("death")
-		$timers/Timer.start()
+		
+
 
 func hitEnemie(body):
 	if body.name == "ninja" && $ninja.godMode == false:
@@ -171,8 +173,10 @@ func hitEnemie(body):
 		gameOver()
 	if $ninja.isAttacking == true:
 		var enemie = airEnemie[0]
-		enemie.queue_free()
-		airEnemie.erase(enemie)
+		enemie.get_node("AnimatedSprite2D").play("death")
+		enemie.get_node("AnimationPlayer").play("death")
+		enemie.set_collision_layer_value ( 1, 0 )
+		enemie.set_collision_mask_value( 1, 0 )
 
 func show_score():
 	$hud.get_node("scoreLabel").text = "SCORE: " + str(score / scoreModifier)

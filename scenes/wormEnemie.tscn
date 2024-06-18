@@ -1,74 +1,74 @@
 [gd_scene load_steps=23 format=3 uid="uid://bxihxd86dbmtj"]
 
-[ext_resource type="Texture2D" uid="uid://3b6ug55xqrkq" path="res://sprites/enemies/IMG_4009.PNG" id="1_iqgbm"]
-[ext_resource type="Texture2D" uid="uid://pbnjtcuhgnk3" path="res://sprites/enemies/Idle.png" id="1_v3kih"]
+[ext_resource type="Texture2D" uid="uid://3b6ug55xqrkq" path="res://sprites/enemies/worm/IMG_4009.PNG" id="1_v0bfq"]
+[ext_resource type="Texture2D" uid="uid://pbnjtcuhgnk3" path="res://sprites/enemies/worm/Idle.png" id="2_5gsf0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0efn6"]
-atlas = ExtResource("1_iqgbm")
+atlas = ExtResource("1_v0bfq")
 region = Rect2(0, 0, 90, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vlof2"]
-atlas = ExtResource("1_iqgbm")
+atlas = ExtResource("1_v0bfq")
 region = Rect2(90, 0, 90, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jbib2"]
-atlas = ExtResource("1_iqgbm")
+atlas = ExtResource("1_v0bfq")
 region = Rect2(180, 0, 90, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_npgwn"]
-atlas = ExtResource("1_iqgbm")
+atlas = ExtResource("1_v0bfq")
 region = Rect2(270, 0, 90, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ouslj"]
-atlas = ExtResource("1_iqgbm")
+atlas = ExtResource("1_v0bfq")
 region = Rect2(360, 0, 90, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d1ya6"]
-atlas = ExtResource("1_iqgbm")
+atlas = ExtResource("1_v0bfq")
 region = Rect2(450, 0, 90, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nqvpq"]
-atlas = ExtResource("1_iqgbm")
+atlas = ExtResource("1_v0bfq")
 region = Rect2(540, 0, 90, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_byo35"]
-atlas = ExtResource("1_iqgbm")
+atlas = ExtResource("1_v0bfq")
 region = Rect2(630, 0, 90, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nahan"]
-atlas = ExtResource("1_v3kih")
+atlas = ExtResource("2_5gsf0")
 region = Rect2(0, 0, 90, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4w0hi"]
-atlas = ExtResource("1_v3kih")
+atlas = ExtResource("2_5gsf0")
 region = Rect2(90, 0, 90, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ifhq"]
-atlas = ExtResource("1_v3kih")
+atlas = ExtResource("2_5gsf0")
 region = Rect2(180, 0, 90, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j830u"]
-atlas = ExtResource("1_v3kih")
+atlas = ExtResource("2_5gsf0")
 region = Rect2(270, 0, 90, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7ff1j"]
-atlas = ExtResource("1_v3kih")
+atlas = ExtResource("2_5gsf0")
 region = Rect2(360, 0, 90, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7rf66"]
-atlas = ExtResource("1_v3kih")
+atlas = ExtResource("2_5gsf0")
 region = Rect2(450, 0, 90, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_inqxj"]
-atlas = ExtResource("1_v3kih")
+atlas = ExtResource("2_5gsf0")
 region = Rect2(540, 0, 90, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fm758"]
-atlas = ExtResource("1_v3kih")
+atlas = ExtResource("2_5gsf0")
 region = Rect2(630, 0, 90, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a5gww"]
-atlas = ExtResource("1_v3kih")
+atlas = ExtResource("2_5gsf0")
 region = Rect2(720, 0, 90, 90)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j4bmf"]
@@ -144,7 +144,7 @@ radius = 12.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fpqgg"]
 size = Vector2(30.9825, 11)
 
-[node name="worm" type="Area2D"]
+[node name="area2D" type="Area2D"]
 scale = Vector2(3.74, 3.74)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -153,7 +153,7 @@ position = Vector2(23.6096, -13.0214)
 sprite_frames = SubResource("SpriteFrames_j4bmf")
 animation = &"death"
 autoplay = "idle"
-frame_progress = 0.628729
+frame_progress = 0.393769
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

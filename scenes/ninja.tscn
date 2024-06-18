@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://njpkcgx6t1hn" path="res://sound/jump.wav" id="6_05ey1"]
 [ext_resource type="AudioStream" uid="uid://d25f6ev78ftq4" path="res://sound/walk.wav" id="6_s4pv6"]
 [ext_resource type="AudioStream" uid="uid://ck1rccwmqyydl" path="res://sound/slash.wav" id="7_766dn"]
-[ext_resource type="AudioStream" uid="uid://cld4e7oixnxdr" path="res://sound/slash2.wav" id="7_ddy01"]
+[ext_resource type="AudioStream" uid="uid://cld4e7oixnxdr" path="res://sound/slash2.wav" id="8_03ji0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e7eb8"]
 atlas = ExtResource("1_7d8qg")
@@ -173,13 +173,11 @@ script = ExtResource("1_q4dok")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_fhqao")
-animation = &"attack"
+animation = &"run"
 autoplay = "idle"
-frame = 2
-frame_progress = 0.299792
 
 [node name="runCollision" type="CollisionShape2D" parent="."]
-position = Vector2(-4.3125, 3.25)
+position = Vector2(8.82917, 3.45489)
 shape = SubResource("RectangleShape2D_q5qwg")
 
 [node name="duckCollision" type="CollisionShape2D" parent="."]
@@ -202,7 +200,7 @@ volume_db = -12.556
 
 [node name="swordSlash" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(-0.5, 1.5)
-stream = ExtResource("7_ddy01")
+stream = ExtResource("8_03ji0")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="swordSlash"]
 stream = ExtResource("7_766dn")
@@ -220,7 +218,7 @@ wait_time = 3.0
 wait_time = 0.7
 
 [node name="walkAudio" type="Timer" parent="Node"]
-wait_time = 0.34
+wait_time = 0.35
 
 [connection signal="timeout" from="Node/isAttacking" to="." method="_on_is_attacking_timeout"]
 [connection signal="timeout" from="Node/attackCooldown" to="." method="_on_attack_cooldown_timeout"]

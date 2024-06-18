@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxcb6rxby87qg"]
+[gd_scene load_steps=9 format=3 uid="uid://dxcb6rxby87qg"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_vri5b"]
 [ext_resource type="PackedScene" uid="uid://5duuo2ylb85h" path="res://scenes/background.tscn" id="1_xx68b"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ojkeyuuhsi4u" path="res://scenes/hud.tscn" id="5_mxmxb"]
 [ext_resource type="PackedScene" uid="uid://cb8p6han6avpk" path="res://scenes/gameOver.tscn" id="6_g4hdk"]
 [ext_resource type="AudioStream" uid="uid://blb0arfeia72d" path="res://sound/death.wav" id="7_ib32m"]
+[ext_resource type="AudioStream" uid="uid://1jplbjnkxsph" path="res://sound/background music.mp3" id="8_itf7f"]
 
 [node name="main" type="Node"]
 script = ExtResource("1_vri5b")
@@ -24,6 +25,14 @@ position = Vector2(-46.5, -247.5)
 scale = Vector2(0.5, 0.5)
 stream = ExtResource("7_ib32m")
 volume_db = -6.723
+
+[node name="background" type="AudioStreamPlayer2D" parent="ninja"]
+process_mode = 3
+position = Vector2(-35.7006, -190.019)
+scale = Vector2(0.383877, 0.383877)
+stream = ExtResource("8_itf7f")
+volume_db = -14.776
+autoplay = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 324)
