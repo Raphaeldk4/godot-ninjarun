@@ -306,10 +306,5 @@ func gameOver():
 	gameRunning = false
 	$gameOver.show()
 
-
-
-
-
-
 func _on_attack_cooldown_timeout():
 	attackCooldown = false
