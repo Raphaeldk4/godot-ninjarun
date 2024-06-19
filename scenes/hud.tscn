@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://ojkeyuuhsi4u"]
+[gd_scene load_steps=8 format=3 uid="uid://ojkeyuuhsi4u"]
 
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_xff3i"]
 [ext_resource type="Texture2D" uid="uid://d0o8jxd2ronia" path="res://sprites/hud/4334081.png" id="2_8185w"]
+[ext_resource type="Texture2D" uid="uid://ots433p4swgt" path="res://sprites/ninja/ninja3/shuriken/shuriken2.png" id="2_h4gux"]
 [ext_resource type="Texture2D" uid="uid://cw6ldopavkdd8" path="res://sprites/hud/A_black_image.jpg" id="3_s2pqd"]
 
 [sub_resource type="Animation" id="Animation_1ghsi"]
@@ -130,6 +131,15 @@ text = "HIGH SCORE: "
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1085, 584)
 scale = Vector2(0.177734, 0.177734)
+
+[node name="shuriken" type="Sprite2D" parent="Sprite2D"]
+texture_filter = 1
+position = Vector2(42.1978, -0.239517)
+rotation = -0.102974
+scale = Vector2(43.0017, 41.8302)
+texture = ExtResource("2_h4gux")
+
+[node name="sword" type="Sprite2D" parent="Sprite2D"]
 texture = ExtResource("2_8185w")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite2D"]
@@ -150,10 +160,10 @@ anchor_left = 0.17
 anchor_top = -0.258
 anchor_right = 1.215
 anchor_bottom = 0.384
-offset_left = -255.832
-offset_top = -256.124
-offset_right = -255.872
-offset_bottom = -255.828
+offset_left = -157.709
+offset_top = -376.71
+offset_right = 214.246
+offset_bottom = -136.352
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.211765)

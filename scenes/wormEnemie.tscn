@@ -4,6 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://pbnjtcuhgnk3" path="res://sprites/enemies/worm/Idle.png" id="2_5gsf0"]
 [ext_resource type="AudioStream" uid="uid://bioygjqkyc6yb" path="res://sound/wormDeath.mp3" id="3_dnsak"]
 
+[sub_resource type="Gradient" id="Gradient_r7cht"]
+offsets = PackedFloat32Array(0, 0.715347)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o3eag"]
+gradient = SubResource("Gradient_r7cht")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_0efn6"]
 atlas = ExtResource("1_v0bfq")
 region = Rect2(0, 0, 90, 90)
@@ -139,16 +148,17 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kwn07"]
-radius = 12.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpqgg"]
-size = Vector2(30.9825, 11)
-
 [node name="area2D" type="Area2D"]
 scale = Vector2(3.74, 3.74)
 collision_layer = 3
 collision_mask = 3
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(16.8877, -22.2834)
+scale = Vector2(0.967914, 0.771557)
+color = Color(1, 0.360784, 0.0392157, 1)
+energy = 2.25
+texture = SubResource("GradientTexture2D_o3eag")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -158,14 +168,6 @@ animation = &"death"
 autoplay = "idle"
 frame_progress = 0.393769
 flip_h = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(16.6271, -15.0164)
-shape = SubResource("CircleShape2D_kwn07")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(24.0809, -5.54009)
-shape = SubResource("RectangleShape2D_fpqgg")
 
 [node name="deathAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_dnsak")

@@ -84,7 +84,12 @@ func new_game():
 	$hud.get_node("startLabel").show()
 	$gameOver.hide()
 	$skins.hide()
-	
+	if $ninja.ninja == $ninja.get_node("ninja3"):
+		$hud.get_node("Sprite2D/sword").visible = false
+		$hud.get_node("Sprite2D/shuriken").visible = true
+	else: 
+		$hud.get_node("Sprite2D/sword").visible = true
+		$hud.get_node("Sprite2D/shuriken").visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -187,6 +192,7 @@ func hitObsticle(body):
 		obs.set_collision_mask_value( 1, 0 )
 		obs.get_node("AnimatedSprite2D").play("death")
 		obs.get_node("deathAudio").play()
+		obs.get_node("PointLight2D").enabled = false
 	if body.name == "shuriken":
 		var obs = obstacles[0]
 		var hitShuriken = shurikenList[0]
@@ -201,13 +207,14 @@ func hitObsticle(body):
 
 
 func hitEnemie(body):
-	if body.name == "ninja" && $ninja.godMode == false:
+	if body.name == "ninja" && $ninja.isAttacking == false:
 		setHighScore()
 		gameOver()
 	if $ninja.isAttacking == true:
 		var enemie = airEnemie[0]
 		enemie.get_node("AnimatedSprite2D").play("death")
 		enemie.get_node("AnimationPlayer").play("death")
+		enemie.get_node("deathAudio").play()
 		enemie.set_collision_layer_value ( 1, 0 )
 		enemie.set_collision_mask_value( 1, 0 )
 	if body.name == "shuriken":
@@ -216,6 +223,7 @@ func hitEnemie(body):
 		hitShuriken.queue_free()
 		enemie.get_node("AnimatedSprite2D").play("death")
 		enemie.get_node("AnimationPlayer").play("death")
+		enemie.get_node("deathAudio").play()
 		enemie.set_collision_layer_value ( 1, 0 )
 		enemie.set_collision_mask_value( 1, 0 )
 		shurikenList.erase(hitShuriken)

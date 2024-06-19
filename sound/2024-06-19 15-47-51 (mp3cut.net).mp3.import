@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d2x6x8qesjt5y"
+path="res://.godot/imported/2024-06-19 15-47-51 (mp3cut.net).mp3-9df38b402e91e185c7d5db75d6c17fda.mp3str"
+
+[deps]
+
+source_file="res://sound/2024-06-19 15-47-51 (mp3cut.net).mp3"
+dest_files=["res://.godot/imported/2024-06-19 15-47-51 (mp3cut.net).mp3-9df38b402e91e185c7d5db75d6c17fda.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

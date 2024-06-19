@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://bqbbtxfk8d8sf"]
+[gd_scene load_steps=73 format=3 uid="uid://bqbbtxfk8d8sf"]
 
 [ext_resource type="Texture2D" uid="uid://436d3m7adsvh" path="res://sprites/ninja/Attack2.png" id="1_7d8qg"]
 [ext_resource type="Script" path="res://scenes/ninja.gd" id="1_q4dok"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://lptbj1uce4ai" path="res://sprites/ninja/Run.png" id="4_dcgqm"]
 [ext_resource type="AudioStream" uid="uid://njpkcgx6t1hn" path="res://sound/jump.wav" id="6_05ey1"]
 [ext_resource type="AudioStream" uid="uid://d25f6ev78ftq4" path="res://sound/walk.wav" id="6_s4pv6"]
+[ext_resource type="AudioStream" uid="uid://d2x6x8qesjt5y" path="res://sound/2024-06-19 15-47-51 (mp3cut.net).mp3" id="7_2ngu7"]
 [ext_resource type="AudioStream" uid="uid://ck1rccwmqyydl" path="res://sound/slash.wav" id="7_766dn"]
 [ext_resource type="AudioStream" uid="uid://cld4e7oixnxdr" path="res://sound/slash2.wav" id="8_03ji0"]
 [ext_resource type="Texture2D" uid="uid://b7n5mxjege2l7" path="res://sprites/ninja/ninja2/slash-Sheet.png" id="10_rsfib"]
@@ -428,6 +429,10 @@ disabled = true
 [node name="walkSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_s4pv6")
 volume_db = -12.556
+
+[node name="throwSound" type="AudioStreamPlayer2D" parent="."]
+scale = Vector2(1, 1)
+stream = ExtResource("7_2ngu7")
 
 [node name="jumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_05ey1")

@@ -74,6 +74,7 @@ func attackShuriken():
 		$Node/attackCooldown.start()
 		$Node/isAttacking.start()
 		ninja.play("attack")
+		$throwSound.play()
 
 func PlayWalkAudio():
 	if walkTime:

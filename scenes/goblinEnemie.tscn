@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bes4b37au02vw"]
+[gd_scene load_steps=16 format=3 uid="uid://bes4b37au02vw"]
 
 [ext_resource type="Texture2D" uid="uid://bo6plwgns5v2o" path="res://sprites/enemies/goblin/death.png" id="1_0jqdv"]
 [ext_resource type="Texture2D" uid="uid://coqu0ms3tve5s" path="res://sprites/enemies/goblin/idle.png" id="2_pnu3m"]
@@ -64,7 +64,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_th2wb")
 }, {
-"duration": 6.0,
+"duration": 10.0,
 "texture": SubResource("AtlasTexture_th2wb")
 }, {
 "duration": 10.0,
@@ -89,6 +89,15 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_hy8k7"]
+offsets = PackedFloat32Array(0, 0.643564)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wjegs"]
+gradient = SubResource("Gradient_hy8k7")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="area2D" type="Area2D"]
 light_mask = 3
 visibility_layer = 3
@@ -105,4 +114,13 @@ flip_h = true
 stream = ExtResource("3_ecd4j")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 polygon = PackedVector2Array(33.8983, -13.5593, 33.8983, -138.983, 50.8475, -142.373, 47.4576, -186.441, 13.5593, -189.831, 16.9492, -206.78, 30.5085, -206.78, 33.8983, -220.339, 64.4068, -220.339, 64.4068, -237.288, 84.7458, -237.288, 81.3559, -250.847, 98.3051, -250.847, 98.3051, -267.797, 132.203, -267.797, 132.203, -254.237, 162.712, -250.847, 162.712, -220.339, 179.661, -220.339, 179.661, -206.78, 196.61, -203.39, 193.22, -189.831, 183.051, -189.831, 179.661, -203.39, 166.102, -203.39, 162.712, -189.831, 145.763, -186.441, 145.763, -142.373, 196.61, -138.983, 196.61, -77.9661, 162.712, -77.9661, 162.712, -61.017, 145.763, -61.017, 149.153, -30.5085, 162.712, -27.1186, 162.712, -13.5593, 132.203, -13.5593, 132.203, -47.4576, 98.3051, -47.4576, 98.3051, -27.1186, 115.254, -27.1186, 115.254, -10.1695, 81.3559, -13.5593, 81.3559, -61.017, 50.8475, -61.017, 50.8475, -13.5593)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(40.678, -132.203)
+scale = Vector2(3.18962, 2.66443)
+color = Color(1, 0.329412, 0.0784314, 1)
+energy = 1.79
+range_layer_min = -10
+texture = SubResource("GradientTexture2D_wjegs")

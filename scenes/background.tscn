@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dsp28u3jp738f" path="res://sprites/background/plx-5.png" id="5_rh3ke"]
 
 [node name="bg" type="ParallaxBackground"]
+layer = -1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

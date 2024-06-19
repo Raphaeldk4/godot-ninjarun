@@ -1,9 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://bgqgliq5mxrc2"]
+[gd_scene load_steps=23 format=3 uid="uid://bgqgliq5mxrc2"]
 
 [ext_resource type="Script" path="res://scenes/eyeEnemie.gd" id="1_ytmxp"]
 [ext_resource type="Texture2D" uid="uid://btpsbsvnwg0iy" path="res://sprites/enemies/eye/eyeDeath.PNG" id="2_yihhp"]
 [ext_resource type="Texture2D" uid="uid://cu76ergblld4q" path="res://sprites/enemies/eye/eye.png" id="3_byhep"]
-[ext_resource type="AudioStream" uid="uid://doaw0oldfapl2" path="res://sound/goblinDeath.mp3" id="4_rie0f"]
+[ext_resource type="AudioStream" uid="uid://l1tr7b2idyp7" path="res://sound/eyeDeath.mp3" id="4_12qtg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4qwd0"]
 atlas = ExtResource("2_yihhp")
@@ -114,6 +114,15 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_72moc"]
+offsets = PackedFloat32Array(0, 0.381188, 0.722772)
+colors = PackedColorArray(1, 1, 1, 1, 0.476578, 0.476578, 0.476578, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2m7lf"]
+gradient = SubResource("Gradient_72moc")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="Animation" id="Animation_k0acg"]
 length = 0.001
 tracks/0/type = "value"
@@ -186,7 +195,16 @@ sprite_frames = SubResource("SpriteFrames_yhhk7")
 animation = &"death"
 autoplay = "idle"
 
+[node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D"]
+position = Vector2(21.595, 48.43)
+scale = Vector2(2.03125, 1.92969)
+color = Color(1, 0.0352941, 0.352941, 1)
+energy = 1.2
+range_layer_min = -10
+texture = SubResource("GradientTexture2D_2m7lf")
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
 position = Vector2(73.405, -68.43)
 polygon = PackedVector2Array(-68.405, -37.57, -49.405, -5.57, -71.405, 7.43, -47.405, 6.43, -31.405, 11.43, -12.405, 24.43, 4.595, 27.43, 13.595, 20.43, 22.595, 19.43, 12.595, 36.43, 15.595, 60.43, 23.595, 59.43, 27.595, 38.43, 33.595, 23.43, 29.595, 9.43, 44.595, -12.57, 43.595, -26.57, 54.595, -38.57, 62.595, -47.57, 21.595, -36.57, 12.595, -26.57, 19.595, -10.57, 5.595, -19.57, -12.405, -18.57, -21.405, -9.57, -35.405, -26.57, -52.405, -43.57, -69.405, -39.57)
 
@@ -196,4 +214,4 @@ libraries = {
 }
 
 [node name="deathAudio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_rie0f")
+stream = ExtResource("4_12qtg")
