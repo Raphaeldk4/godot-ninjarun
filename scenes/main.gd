@@ -28,8 +28,8 @@ var highScore: int
 
 #speed
 var speed: float 
-const startSpeed: float = 2
-const maxSpeed: int = 6
+const startSpeed: float = 5
+const maxSpeed: int = 12
 const speedInrease: int = (5000)
 var screenSize: Vector2i
 
