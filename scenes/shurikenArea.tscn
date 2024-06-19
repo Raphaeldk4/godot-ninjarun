@@ -1,14 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2lyb7vidork8"]
+[gd_scene load_steps=6 format=3 uid="uid://dwgmd0jbgj1x1"]
 
-[ext_resource type="Script" path="res://scenes/shuriken.gd" id="1_0q4fv"]
-[ext_resource type="Texture2D" uid="uid://dl1towy23j5ac" path="res://sprites/ninja/ninja3/shuriken/shuriken.png" id="1_k677q"]
+[ext_resource type="Texture2D" uid="uid://dl1towy23j5ac" path="res://sprites/ninja/ninja3/shuriken/shuriken.png" id="1_rwke0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqqr"]
-atlas = ExtResource("1_k677q")
+atlas = ExtResource("1_rwke0")
 region = Rect2(0, 0, 14, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7vcqn"]
-atlas = ExtResource("1_k677q")
+atlas = ExtResource("1_rwke0")
 region = Rect2(14, 0, 14, 14)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1g7ex"]
@@ -28,9 +27,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e3e1p"]
 size = Vector2(46, 46)
 
-[node name="shuriken" type="CharacterBody2D"]
-collision_priority = 2.0
-script = ExtResource("1_0q4fv")
+[node name="ShurikenArea" type="Area2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -42,4 +39,3 @@ autoplay = "default"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(16, 16)
 shape = SubResource("RectangleShape2D_e3e1p")
-disabled = true

@@ -29,7 +29,7 @@ var highScore: int
 #speed
 var speed: float 
 const startSpeed: float = 2
-const maxSpeed: int = 8
+const maxSpeed: int = 6
 const speedInrease: int = (5000)
 var screenSize: Vector2i
 
@@ -42,7 +42,7 @@ var lastObject
 var gameRunning: bool
 
 #shuriken
-var lastShuriken
+var attackCooldown: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -115,13 +115,21 @@ func _process(delta):
 			
 		#remove passed obstacles and enemies
 		for obs in obstacles:
-			if obs.position.x < ($Camera2D.position.x - screenSize.x + 200):
+			if obs.position.x < ($Camera2D.position.x - screenSize.x + 400):
 				removeObsticle(obs)
 				
 		for enemie in airEnemie:
-			if enemie.position.x < ($Camera2D.position.x - screenSize.x + 200):
+			if enemie.position.x < ($Camera2D.position.x - screenSize.x + 400):
 				removeEnemie(enemie)
 		shurikenSpawner()
+		
+			
+		#remove passed shuriken
+		for shuriken in shurikenList:
+			if shuriken.position.x > ($Camera2D.position.x + 600):
+				shuriken.queue_free()
+				shurikenList.erase(shuriken)
+		
 	else:
 		if Input.is_action_pressed("ui_accept"):
 			gameRunning = true
@@ -181,17 +189,18 @@ func hitObsticle(body):
 		obs.get_node("deathAudio").play()
 	if body.name == "shuriken":
 		var obs = obstacles[0]
+		var hitShuriken = shurikenList[0]
+		hitShuriken.queue_free()
 		obs.set_collision_layer_value ( 1, 0 )
 		obs.set_collision_mask_value( 1, 0 )
+		hitShuriken.set_collision_layer_value ( 1, 0 )
+		hitShuriken.set_collision_mask_value ( 1, 0 )
 		obs.get_node("AnimatedSprite2D").play("death")
 		obs.get_node("deathAudio").play()
-		body.hide()
-		body.get_node("CollisionShape2D").disabled = true
-		
+		shurikenList.erase(hitShuriken)
 
 
 func hitEnemie(body):
-	print("hit")
 	if body.name == "ninja" && $ninja.godMode == false:
 		setHighScore()
 		gameOver()
@@ -203,11 +212,14 @@ func hitEnemie(body):
 		enemie.set_collision_mask_value( 1, 0 )
 	if body.name == "shuriken":
 		var enemie = airEnemie[0]
+		var hitShuriken = shurikenList[0]
+		hitShuriken.queue_free()
 		enemie.get_node("AnimatedSprite2D").play("death")
 		enemie.get_node("AnimationPlayer").play("death")
 		enemie.set_collision_layer_value ( 1, 0 )
 		enemie.set_collision_mask_value( 1, 0 )
-		lastShuriken.queue_free()
+		shurikenList.erase(hitShuriken)
+
 
 func show_score():
 	$hud.get_node("scoreLabel").text = "SCORE: " + str(score / scoreModifier)
@@ -261,15 +273,20 @@ func startGameNinja3():
 
 func shurikenSpawner():
 	if $ninja.ninja == $ninja.get_node("ninja3"):
-		if $ninja.attackCoolDown == false:
-			if Input.is_action_pressed("attack"):
+		if attackCooldown == false:
+			if Input.is_action_just_pressed("attack"):
+				attackCooldown = true
+				$timers/attackCooldown.start()
 				var shuriken
 				shuriken = object.instantiate()
+				shurikenList.append(shuriken)
+				shuriken.get_node("CollisionShape2D").disabled = false
+				shuriken.get_node("AnimatedSprite2D").visible = true 
+				shuriken.set_collision_layer_value ( 1, 1 )
+				shuriken.set_collision_mask_value ( 1, 1 )
 				shuriken.position = $ninja.position
 				shuriken.position.x += 70
 				add_child(shuriken)
-				$timers/collisionShuriken.start
-				shurikenList.append(shuriken)
 func back():
 	$gameOver.show()
 	$skins.hide()
@@ -284,3 +301,7 @@ func gameOver():
 
 
 
+
+
+func _on_attack_cooldown_timeout():
+	attackCooldown = false

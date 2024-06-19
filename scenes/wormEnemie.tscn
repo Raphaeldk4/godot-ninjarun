@@ -99,7 +99,7 @@ animations = [{
 "duration": 6.0,
 "texture": SubResource("AtlasTexture_byo35")
 }, {
-"duration": 3.0,
+"duration": 20.0,
 "texture": SubResource("AtlasTexture_nqvpq")
 }],
 "loop": true,
@@ -169,3 +169,7 @@ shape = SubResource("RectangleShape2D_fpqgg")
 
 [node name="deathAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_dnsak")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(14.9733, -15.2406, 10.4278, -15.508, 8.28877, -18.4492, 6.68449, -22.1925, 6.68449, -27.2727, 8.55615, -31.2834, 13.369, -31.8182, 18.1818, -30.2139, 23.5294, -27.0053, 25.1337, -22.7273, 24.8663, -16.8449, 24.0642, -12.2995, 25.9358, -8.55615, 26.2032, -5.61497, 26.4706, -0.802139, 24.5989, -0.26738, 20.0535, -4.01069, 15.7754, -1.06952, 10.4278, 0, 7.48663, -0.26738, 5.08021, -4.01069, 6.68449, -6.95187, 12.5668, -9.35829, 14.4385, -12.8342)

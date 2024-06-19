@@ -482,7 +482,6 @@ autoplay = "idle"
 
 [node name="ninja3Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0.863722, 5.85412)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_7xtop")
 
 [connection signal="timeout" from="Node/isAttacking" to="." method="_on_is_attacking_timeout"]

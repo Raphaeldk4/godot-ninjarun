@@ -51,8 +51,8 @@ visible = false
 [node name="Timer" type="Timer" parent="timers"]
 wait_time = 0.7
 
-[node name="collisionShuriken" type="Timer" parent="timers"]
-wait_time = 0.05
+[node name="attackCooldown" type="Timer" parent="timers"]
+wait_time = 3.0
 
 [connection signal="timeout" from="timers/Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="timers/collisionShuriken" to="." method="_on_collision_shuriken_timeout"]
+[connection signal="timeout" from="timers/attackCooldown" to="." method="_on_attack_cooldown_timeout"]
