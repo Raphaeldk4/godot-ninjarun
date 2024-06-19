@@ -28,8 +28,8 @@ var highScore: int
 
 #speed
 var speed: float 
-const startSpeed: float = 5
-const maxSpeed: int = 12
+const startSpeed: float = 7
+const maxSpeed: int = 14
 const speedInrease: int = (5000)
 var screenSize: Vector2i
 
@@ -92,7 +92,7 @@ func new_game():
 		$hud.get_node("Sprite2D/shuriken").visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	if gameRunning:
 		#passing game state to hud
 		$hud.gameState = gameRunning

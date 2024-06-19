@@ -10,7 +10,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	if get_parent().gameRunning:
 		if Input.is_action_pressed("attack"):
 			if gameState == true:
