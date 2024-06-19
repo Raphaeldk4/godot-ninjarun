@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://bxihxd86dbmtj"]
+[gd_scene load_steps=24 format=3 uid="uid://bxihxd86dbmtj"]
 
 [ext_resource type="Texture2D" uid="uid://3b6ug55xqrkq" path="res://sprites/enemies/worm/IMG_4009.PNG" id="1_v0bfq"]
 [ext_resource type="Texture2D" uid="uid://pbnjtcuhgnk3" path="res://sprites/enemies/worm/Idle.png" id="2_5gsf0"]
+[ext_resource type="AudioStream" uid="uid://bioygjqkyc6yb" path="res://sound/wormDeath.mp3" id="3_dnsak"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0efn6"]
 atlas = ExtResource("1_v0bfq")
@@ -146,6 +147,8 @@ size = Vector2(30.9825, 11)
 
 [node name="area2D" type="Area2D"]
 scale = Vector2(3.74, 3.74)
+collision_layer = 3
+collision_mask = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -163,3 +166,6 @@ shape = SubResource("CircleShape2D_kwn07")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(24.0809, -5.54009)
 shape = SubResource("RectangleShape2D_fpqgg")
+
+[node name="deathAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_dnsak")

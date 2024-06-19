@@ -1,0 +1,192 @@
+[gd_scene load_steps=26 format=3 uid="uid://c8wtnlynb47ry"]
+
+[ext_resource type="Script" path="res://scenes/ninja.gd" id="1_27qp4"]
+[ext_resource type="Texture2D" uid="uid://436d3m7adsvh" path="res://sprites/ninja/Attack2.png" id="2_0rg31"]
+[ext_resource type="Texture2D" uid="uid://d6pj5p71fh77" path="res://sprites/ninja/ninja2/idle-Sheet.png" id="3_6r3b1"]
+[ext_resource type="Texture2D" uid="uid://cw8rupxxlni0l" path="res://sprites/ninja/ninja2/long jump&fall anim-Sheet.png" id="4_8mglb"]
+[ext_resource type="Texture2D" uid="uid://cxw6bvp4tcalg" path="res://sprites/ninja/ninja2/run-Sheet.png" id="5_3m14a"]
+[ext_resource type="AudioStream" uid="uid://d25f6ev78ftq4" path="res://sound/walk.wav" id="6_1mdr8"]
+[ext_resource type="AudioStream" uid="uid://njpkcgx6t1hn" path="res://sound/jump.wav" id="7_dyhio"]
+[ext_resource type="AudioStream" uid="uid://cld4e7oixnxdr" path="res://sound/slash2.wav" id="8_v86f8"]
+[ext_resource type="AudioStream" uid="uid://ck1rccwmqyydl" path="res://sound/slash.wav" id="9_3wc8y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7eb8"]
+atlas = ExtResource("2_0rg31")
+region = Rect2(0, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kax0b"]
+atlas = ExtResource("2_0rg31")
+region = Rect2(200, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2u00r"]
+atlas = ExtResource("2_0rg31")
+region = Rect2(400, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgmvg"]
+atlas = ExtResource("2_0rg31")
+region = Rect2(600, 0, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihqub"]
+atlas = ExtResource("3_6r3b1")
+region = Rect2(0, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r6qnj"]
+atlas = ExtResource("3_6r3b1")
+region = Rect2(32, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5x0dn"]
+atlas = ExtResource("3_6r3b1")
+region = Rect2(64, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1lej"]
+atlas = ExtResource("3_6r3b1")
+region = Rect2(96, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_psuxm"]
+atlas = ExtResource("4_8mglb")
+region = Rect2(34, 0, 34, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmwwl"]
+atlas = ExtResource("4_8mglb")
+region = Rect2(102, 0, 34, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bb18g"]
+atlas = ExtResource("4_8mglb")
+region = Rect2(136, 0, 34, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jr621"]
+atlas = ExtResource("5_3m14a")
+region = Rect2(0, 0, 36, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xddr4"]
+atlas = ExtResource("5_3m14a")
+region = Rect2(36, 0, 36, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hv4la"]
+atlas = ExtResource("5_3m14a")
+region = Rect2(72, 0, 36, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fhqao"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7eb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kax0b")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_2u00r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgmvg")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihqub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r6qnj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5x0dn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1lej")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_psuxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmwwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bb18g")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jr621")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xddr4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hv4la")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q5qwg"]
+size = Vector2(35.875, 49.5)
+
+[node name="ninja" type="CharacterBody2D"]
+z_index = 1
+scale = Vector2(2.605, 2.605)
+script = ExtResource("1_27qp4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-4.7837, -3.4549)
+scale = Vector2(2.45091, 2.45091)
+sprite_frames = SubResource("SpriteFrames_fhqao")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="runCollision" type="CollisionShape2D" parent="."]
+position = Vector2(1.91939, 3.45489)
+shape = SubResource("RectangleShape2D_q5qwg")
+
+[node name="attackCollision" type="CollisionPolygon2D" parent="."]
+position = Vector2(-0.5, 1.5)
+polygon = PackedVector2Array(22.5, 13, 70, 21.5, 84, -1.5, 25.5, -0.5)
+disabled = true
+
+[node name="walkSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_1mdr8")
+volume_db = -12.556
+
+[node name="jumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_dyhio")
+volume_db = -12.556
+
+[node name="swordSlash" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-0.5, 1.5)
+stream = ExtResource("8_v86f8")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="swordSlash"]
+stream = ExtResource("9_3wc8y")
+pitch_scale = 0.78
+
+[node name="Node" type="Node" parent="."]
+
+[node name="isAttacking" type="Timer" parent="Node"]
+wait_time = 0.22
+
+[node name="attackCooldown" type="Timer" parent="Node"]
+wait_time = 3.0
+
+[node name="godMode" type="Timer" parent="Node"]
+wait_time = 0.7
+
+[node name="walkAudio" type="Timer" parent="Node"]
+wait_time = 0.35
+
+[connection signal="timeout" from="Node/isAttacking" to="." method="_on_is_attacking_timeout"]
+[connection signal="timeout" from="Node/attackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="Node/godMode" to="." method="_on_god_mode_timeout"]
+[connection signal="timeout" from="Node/walkAudio" to="." method="_on_walk_audio_timeout"]

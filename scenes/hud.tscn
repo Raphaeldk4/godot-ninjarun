@@ -161,4 +161,4 @@ theme_override_constants/shadow_offset_x = 0
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/shadow_outline_size = 50
 theme_override_font_sizes/font_size = 176
-text = "RMB"
+text = "LMB"

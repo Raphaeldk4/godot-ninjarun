@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://bgqgliq5mxrc2"]
+[gd_scene load_steps=24 format=3 uid="uid://bgqgliq5mxrc2"]
 
 [ext_resource type="Script" path="res://scenes/eyeEnemie.gd" id="1_ytmxp"]
 [ext_resource type="Texture2D" uid="uid://btpsbsvnwg0iy" path="res://sprites/enemies/eye/eyeDeath.PNG" id="2_yihhp"]
 [ext_resource type="Texture2D" uid="uid://cu76ergblld4q" path="res://sprites/enemies/eye/eye.png" id="3_byhep"]
+[ext_resource type="AudioStream" uid="uid://doaw0oldfapl2" path="res://sound/goblinDeath.mp3" id="4_rie0f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4qwd0"]
 atlas = ExtResource("2_yihhp")
@@ -122,6 +123,33 @@ size = Vector2(48, 55)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80pqo"]
 size = Vector2(51, 52)
 
+[sub_resource type="Animation" id="Animation_k0acg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(73.405, -68.43)]
+}
+
 [sub_resource type="Animation" id="Animation_17pkk"]
 resource_name = "death"
 length = 3.0
@@ -150,33 +178,6 @@ tracks/1/keys = {
 "values": [0.0, 17.4533]
 }
 
-[sub_resource type="Animation" id="Animation_k0acg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimatedSprite2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(73.405, -68.43)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jklju"]
 _data = {
 "RESET": SubResource("Animation_k0acg"),
@@ -184,6 +185,8 @@ _data = {
 }
 
 [node name="eye" type="Area2D"]
+light_mask = 3
+visibility_layer = 3
 script = ExtResource("1_ytmxp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -208,3 +211,6 @@ shape = SubResource("RectangleShape2D_80pqo")
 libraries = {
 "": SubResource("AnimationLibrary_jklju")
 }
+
+[node name="deathAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_rie0f")

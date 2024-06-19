@@ -93,6 +93,8 @@ animations = [{
 size = Vector2(196, 280)
 
 [node name="area2D" type="Area2D"]
+light_mask = 3
+visibility_layer = 3
 scale = Vector2(0.295, 0.295)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

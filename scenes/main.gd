@@ -4,6 +4,8 @@ extends Node
 var eyeEnemie = preload("res://scenes/eyeEnemie.tscn")
 var goblinEnemie = preload("res://scenes/goblinEnemie.tscn")
 var wormEnemie = preload("res://scenes/wormEnemie.tscn")
+var object = preload("res://scenes/shuriken.tscn")
+var shurikenList: Array
 var obstacleType := [goblinEnemie, wormEnemie]
 var obstacles: Array
 var airEnemie: Array
@@ -39,11 +41,19 @@ var lastObject
 #game state
 var gameRunning: bool
 
+#shuriken
+var lastShuriken
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screenSize = get_window().size
 	groundHeight = $ground.get_node("Sprite2D").texture.get_height()
 	$gameOver.get_node("RESTART").pressed.connect(new_game)
+	$gameOver.get_node("SKINS").pressed.connect(openSkins)
+	$skins.get_node("ninja1/select").pressed.connect(startGameNinja1)
+	$skins.get_node("ninja2/select").pressed.connect(startGameNinja2)
+	$skins.get_node("ninja3/select").pressed.connect(startGameNinja3)
+	$skins.get_node("BACK").pressed.connect(back)
 	$hud.get_node("highScoreLabel").text = "HIGHSCORE: 0"
 	new_game()
 
@@ -70,9 +80,10 @@ func new_game():
 	$Camera2D.position = camStartPos
 	$ground.position = Vector2i(0,0)
 	
-	#reset HUD + game over screen
+	#reset HUD + game over screen + skins selection
 	$hud.get_node("startLabel").show()
 	$gameOver.hide()
+	$skins.hide()
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -110,11 +121,13 @@ func _process(delta):
 		for enemie in airEnemie:
 			if enemie.position.x < ($Camera2D.position.x - screenSize.x + 200):
 				removeEnemie(enemie)
-		
+		shurikenSpawner()
 	else:
 		if Input.is_action_pressed("ui_accept"):
 			gameRunning = true
 			$hud.get_node("startLabel").hide()
+			
+	
 
 func generateObstacles(): 
 	#generate ground obstacles
@@ -154,20 +167,31 @@ func removeObsticle(obs):
 func removeEnemie(enemie): 
 	enemie.queue_free()
 	airEnemie.erase(enemie)
-	
+
+
 func hitObsticle(body):
 	if body.name == "ninja" && $ninja.isAttacking == false:
 		setHighScore()
 		gameOver()
-	if $ninja.isAttacking == true:
+	if $ninja.isAttacking == true && $ninja.ninja != $ninja.get_node("ninja3"):
 		var obs = obstacles[0]
 		obs.set_collision_layer_value ( 1, 0 )
 		obs.set_collision_mask_value( 1, 0 )
 		obs.get_node("AnimatedSprite2D").play("death")
+		obs.get_node("deathAudio").play()
+	if body.name == "shuriken":
+		var obs = obstacles[0]
+		obs.set_collision_layer_value ( 1, 0 )
+		obs.set_collision_mask_value( 1, 0 )
+		obs.get_node("AnimatedSprite2D").play("death")
+		obs.get_node("deathAudio").play()
+		body.hide()
+		body.get_node("CollisionShape2D").disabled = true
 		
 
 
 func hitEnemie(body):
+	print("hit")
 	if body.name == "ninja" && $ninja.godMode == false:
 		setHighScore()
 		gameOver()
@@ -177,6 +201,13 @@ func hitEnemie(body):
 		enemie.get_node("AnimationPlayer").play("death")
 		enemie.set_collision_layer_value ( 1, 0 )
 		enemie.set_collision_mask_value( 1, 0 )
+	if body.name == "shuriken":
+		var enemie = airEnemie[0]
+		enemie.get_node("AnimatedSprite2D").play("death")
+		enemie.get_node("AnimationPlayer").play("death")
+		enemie.set_collision_layer_value ( 1, 0 )
+		enemie.set_collision_mask_value( 1, 0 )
+		lastShuriken.queue_free()
 
 func show_score():
 	$hud.get_node("scoreLabel").text = "SCORE: " + str(score / scoreModifier)
@@ -190,13 +221,66 @@ func adjustDifficulty():
 	difficulty = score / speedInrease
 	if difficulty > maxDifficulty : 
 		difficulty = maxDifficulty
-		
+
+func openSkins():
+	$gameOver.hide()
+	$skins.show()
+
+func startGameNinja1():
+	$ninja.ninja = $ninja.get_node("ninja")
+	$ninja.get_node("ninja").visible = true
+	$ninja.get_node("ninja2").visible = false
+	$ninja.get_node("ninja3").visible = false 
+	$ninja.get_node("ninja2Attack").disabled = true
+	$ninja.get_node("ninja2Collision").disabled = true
+	$ninja.get_node("ninja1Attack").disabled = false
+	$ninja.get_node("ninja1Collision").disabled = false
+	$ninja.get_node("ninja3Collision").disabled = true
+	
+func startGameNinja2():
+	$ninja.ninja = $ninja.get_node("ninja2")
+	$ninja.get_node("ninja2").visible = true
+	$ninja.get_node("ninja").visible = false 
+	$ninja.get_node("ninja3").visible = false 
+	$ninja.get_node("ninja2Attack").disabled = false
+	$ninja.get_node("ninja2Collision").disabled = false
+	$ninja.get_node("ninja1Attack").disabled = true
+	$ninja.get_node("ninja1Collision").disabled = true
+	$ninja.get_node("ninja3Collision").disabled = true
+	
+func startGameNinja3():
+	$ninja.ninja = $ninja.get_node("ninja3")
+	$ninja.get_node("ninja2").visible = false
+	$ninja.get_node("ninja").visible = false 
+	$ninja.get_node("ninja3").visible = true 
+	$ninja.get_node("ninja2Attack").disabled = true
+	$ninja.get_node("ninja2Collision").disabled = true
+	$ninja.get_node("ninja1Attack").disabled = true
+	$ninja.get_node("ninja1Collision").disabled = true
+	$ninja.get_node("ninja3Collision").disabled = false
+
+func shurikenSpawner():
+	if $ninja.ninja == $ninja.get_node("ninja3"):
+		if $ninja.attackCoolDown == false:
+			if Input.is_action_pressed("attack"):
+				var shuriken
+				shuriken = object.instantiate()
+				shuriken.position = $ninja.position
+				shuriken.position.x += 70
+				add_child(shuriken)
+				$timers/collisionShuriken.start
+				shurikenList.append(shuriken)
+func back():
+	$gameOver.show()
+	$skins.hide()
+	
+
 func gameOver():
 	$ninja/death.play()
 	get_tree().paused = true
 	gameRunning = false
 	$gameOver.show()
-	
+
 
 
 

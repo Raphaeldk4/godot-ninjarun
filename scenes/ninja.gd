@@ -7,61 +7,77 @@ var attackCoolDown: bool
 var godMode: bool
 var walkTime: bool = true
 
+var ninja
+
+func _ready():
+	ninja = $ninja
+	$ninja2.visible = false
+	$ninja3.visible = false
+
 func _physics_process(delta):
 	velocity.y += gravity * delta
 	if is_on_floor():
 		if not get_parent().gameRunning:
-			$AnimatedSprite2D.play("idle")
+			ninja.play("idle")
 		else:
-			$runCollision.disabled = false
-			$duckCollision.disabled = true
 			if Input.is_action_pressed("ui_accept"):
 				velocity.y = jump_speed
 				$jumpSound.play()
 			elif Input.is_action_pressed("attack"):
-				attack()
+				if ninja == $ninja or ninja == $ninja2:
+					attackSword()
+				else:
+					attackShuriken()
 			else:
 				if isAttacking == false:
-					$AnimatedSprite2D.play("run")
+					ninja.play("run")
 					PlayWalkAudio()
 	else:
 		if isAttacking == false:
-			$AnimatedSprite2D.play("jump")
+			ninja.play("jump")
 		if Input.is_action_pressed("attack"):
-					attack()
+			if ninja == $ninja or ninja == $ninja2:
+					attackSword()
+			else:
+				attackShuriken()
 		
 	move_and_slide()
 
 func _on_is_attacking_timeout():
 	isAttacking = false
-	$attackCollision.disabled = true
+	$ninja1Attack.disabled = true
+	$ninja2Attack.disabled = true
 	
 func _on_attack_cooldown_timeout():
 	attackCoolDown = false
 
-func attack():
+func attackSword():
 	if attackCoolDown == false: 
-					attackCoolDown = true
-					isAttacking = true
-					godMode = true
-					$Node/attackCooldown.start()
-					$Node/isAttacking.start()
-					$AnimatedSprite2D.play("attack")
-					$runCollision.disabled = true
-					$duckCollision.disabled = false
-					$attackCollision.disabled = false
-					$swordSlash.play()
-					$swordSlash/AudioStreamPlayer2D.play()
-					$Node/godMode.start()
+		attackCoolDown = true
+		isAttacking = true
+		$Node/attackCooldown.start()
+		$Node/isAttacking.start()
+		ninja.play("attack")
+		
+		if ninja == $ninja2:
+			$ninja2Attack.disabled = false
+		else:
+			$ninja1Attack.disabled = false
+			
+		$swordSlash.play()
+		$swordSlash/AudioStreamPlayer2D.play()
 
+func attackShuriken():
+	if attackCoolDown == false:
+		attackCoolDown = true
+		isAttacking = true
+		$Node/attackCooldown.start()
+		$Node/isAttacking.start()
+		ninja.play("attack")
 
-func _on_god_mode_timeout():
-	godMode = false
-	
 func PlayWalkAudio():
 	if walkTime:
 		walkTime = false
-		$walkSound.pitch_scale = randi_range(0.5,1.5) 
 		$Node/walkAudio.start()
 		$walkSound.play()
 
