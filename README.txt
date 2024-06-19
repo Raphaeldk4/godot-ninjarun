@@ -1,2 +1,2 @@
-TL;DR LOCATION OF EXE
+__**LOCATION OF EXE**__
 unzip ninjaRun.zip in the folder there will be ninjaRun.exe which is the exe for the game
